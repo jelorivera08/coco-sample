@@ -18,9 +18,13 @@ export class DataStreamService {
 
     pubnub.addListener({
       message: (data) => {
+        console.log(data);
         this.tweets.push({
+          userName: data.message.user.name,
+          screenName: data.message.user.screen_name,
+          imageUrl: data.message.user.profile_image_url,
           id: data.message.id,
-          content: data.message,
+          content: data.message.text,
           countryCode: data.message.place
             ? data.message.place.country_code
             : null,

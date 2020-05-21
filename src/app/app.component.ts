@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { DataStreamService } from "./data-stream.service";
+import { Tweet } from "./tweet";
 
 @Component({
   selector: "app-root",
@@ -7,15 +8,12 @@ import { DataStreamService } from "./data-stream.service";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  title = "coco-sample";
+  tweets: Tweet[] = [];
 
   constructor(private dataStreamService: DataStreamService) {}
 
-  getTweets() {
-    console.log(this.dataStreamService.getTweetsPerMinute());
-  }
-
   ngOnInit() {
     this.dataStreamService.initializeStream();
+    this.tweets = this.dataStreamService.getTweets();
   }
 }
