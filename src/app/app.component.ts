@@ -9,11 +9,17 @@ import { Tweet } from "./tweet";
 })
 export class AppComponent {
   tweets: Tweet[] = [];
+  tweetCount;
 
   constructor(private dataStreamService: DataStreamService) {}
 
   ngOnInit() {
     this.dataStreamService.initializeStream();
     this.tweets = this.dataStreamService.getTweets();
+
+    setInterval(
+      () => (this.tweetCount = this.dataStreamService.getTweetsPerMinute()),
+      1000
+    );
   }
 }

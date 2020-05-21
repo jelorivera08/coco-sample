@@ -7,6 +7,7 @@ import { Tweet } from "./tweet";
 })
 export class DataStreamService {
   tweets: Tweet[] = [];
+
   count = 0;
 
   initializeStream() {
@@ -18,7 +19,6 @@ export class DataStreamService {
 
     pubnub.addListener({
       message: (data) => {
-        console.log(data);
         this.tweets.push({
           userName: data.message.user.name,
           screenName: data.message.user.screen_name,

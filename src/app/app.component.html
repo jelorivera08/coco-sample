@@ -1,11 +1,13 @@
 <div class="container">
   <div class="header">
-    <input class="input-search" placeholder="Search" />
+    <div class="actions-header-container">
+      <input class="input-search" placeholder="Search" />
 
-    <div>
-      <div class="tweets-number">500</div>
+      <div>
+        <div class="tweets-number">{{ tweetCount }}</div>
 
-      <div class="tweets-label">Tweets per minute</div>
+        <div class="tweets-label">Tweets per minute</div>
+      </div>
     </div>
   </div>
   <div class="tweets-container">
