@@ -44,8 +44,8 @@
 
 .tweet-box {
   border: 1px solid #d0d0d0;
-  width: 24rem;
-  height: 35rem;
+  width: 22rem;
+  height: 34rem;
   border-radius: 0.5rem;
   overflow-y: auto;
   overflow-x: hidden;
