@@ -1,8 +1,12 @@
 <div class="container">
   <div class="header">
     <div class="actions-header-container">
-      <input class="input-search" placeholder="Search" />
-
+      <input
+        #searchTerm
+        (input)="handleChange(searchTerm.value)"
+        class="input-search"
+        placeholder="Search"
+      />
       <div>
         <div class="tweets-number">{{ tweetCount }}</div>
 
@@ -12,19 +16,21 @@
   </div>
   <div class="tweets-container">
     <div class="tweet-box">
-      <div *ngFor="let tweet of tweets" class="tweet">
-        <div>
-          <img class="image" [src]="tweet.imageUrl" alt="photo" />
-        </div>
-
-        <div class="tweet-body">
-          <div class="name-container">
-            <div class="name">{{ tweet.userName }}</div>
-            <div class="screen-name">@{{ tweet.screenName }}</div>
+      <ng-container *ngFor="let tweet of tweets">
+        <div *ngIf="tweet.content.includes(searchKey)" class="tweet">
+          <div>
+            <img class="image" [src]="tweet.imageUrl" alt="photo" />
           </div>
-          <div class="content">{{ tweet.content }}</div>
+
+          <div class="tweet-body">
+            <div class="name-container">
+              <div class="name">{{ tweet.userName }}</div>
+              <div class="screen-name">@{{ tweet.screenName }}</div>
+            </div>
+            <div class="content">{{ tweet.content }}</div>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

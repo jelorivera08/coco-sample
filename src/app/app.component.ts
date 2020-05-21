@@ -9,6 +9,7 @@ import { Tweet } from "./tweet";
 })
 export class AppComponent {
   tweets: Tweet[] = [];
+  searchKey: string = "";
   tweetCount;
 
   constructor(private dataStreamService: DataStreamService) {}
@@ -21,5 +22,9 @@ export class AppComponent {
       () => (this.tweetCount = this.dataStreamService.getTweetsPerMinute()),
       1000
     );
+  }
+
+  handleChange(term) {
+    this.searchKey = term;
   }
 }
