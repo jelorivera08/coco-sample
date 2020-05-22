@@ -17,7 +17,7 @@
   <div class="tweets-container">
     <div class="tweet-box">
       <ng-container *ngFor="let tweet of tweets">
-        <div *ngIf="tweet.content.includes(searchKey)" class="tweet">
+        <div *ngIf="tweet.content.includes(searchKey$ | async)" class="tweet">
           <div>
             <img class="image" [src]="tweet.imageUrl" alt="photo" />
           </div>

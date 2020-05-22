@@ -1,6 +1,9 @@
 import { Component } from "@angular/core";
 import { DataStreamService } from "./data-stream.service";
 import { Tweet } from "./tweet";
+import { changeSearchKey } from "./searchKey.actions";
+import { Store, select } from "@ngrx/store";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-root",
@@ -9,10 +12,15 @@ import { Tweet } from "./tweet";
 })
 export class AppComponent {
   tweets: Tweet[] = [];
-  searchKey: string = "";
-  tweetCount;
+  tweetCount: number;
+  searchKey$: Observable<string>;
 
-  constructor(private dataStreamService: DataStreamService) {}
+  constructor(
+    private dataStreamService: DataStreamService,
+    private store: Store<{ searchKey: string }>
+  ) {
+    this.searchKey$ = store.pipe(select("searchKey"));
+  }
 
   ngOnInit() {
     this.dataStreamService.initializeStream();
@@ -25,6 +33,6 @@ export class AppComponent {
   }
 
   handleChange(term) {
-    this.searchKey = term;
+    this.store.dispatch(changeSearchKey({ payload: term }));
   }
 }
