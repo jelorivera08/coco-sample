@@ -7,7 +7,7 @@
         class="input-search"
         placeholder="Search"
       />
-      <div>
+      <div class="tweets-status">
         <div class="tweets-number">{{ tweetCount }}</div>
 
         <div class="tweets-label">TWEETS PER MINUTE</div>
@@ -28,6 +28,9 @@
               <div class="screen-name">@{{ tweet.screenName }}</div>
             </div>
             <div class="content">{{ tweet.content }}</div>
+            <div class="country-code">
+              country code: {{ tweet.countryCode }}
+            </div>
           </div>
         </div>
       </ng-container>
