@@ -18,8 +18,7 @@ export class DataStreamService {
 
     pubnub.addListener({
       message: (data) => {
-        // unshift
-        this.tweets.push({
+        this.tweets.unshift({
           userName: data.message.user.name,
           screenName: data.message.user.screen_name,
           imageUrl: data.message.user.profile_image_url,
